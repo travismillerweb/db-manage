@@ -1,0 +1,12 @@
+#!/bin/sh
+
+path_to_binary='/Applications/MAMP/Library/bin/'
+mysql_user=''
+mysql_pass=''
+dbname='sample-db' # also used as the file name
+fname='sample_working_db'
+path_to_file='' # the path relative to the root git directory
+
+rootdir=$(git rev-parse --show-toplevel)
+
+set -e

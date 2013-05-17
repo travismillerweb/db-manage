@@ -1,0 +1,16 @@
+#!/bin/sh
+# 
+# Dumps the database and adds it the current commit
+# You may need to chmod +x mysql_config
+
+. ./mysql_config
+
+echo "This script takes the MySQL you have on your local database and dumps it to $fname.sql"
+
+. ./confirm_continue
+
+# dump the sql to the working file
+echo "Starting to export/dump the MySQL into $fname.sql..."
+$path_to_binary"mysqldump" --host=$mysql_host --user=$mysql_user --password=$mysql_pass --skip-extended-insert $dbname > $rootdir/$path_to_file$fname.sql
+
+echo "Dumped $fname.sql to commit. Remember to run to git add."

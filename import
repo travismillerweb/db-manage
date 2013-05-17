@@ -1,0 +1,26 @@
+#!/bin/sh
+# 
+# Updates the existing database by 
+# restoring from the mysqldump file in the commit that just happened
+# 
+# You may need to chmod +x mysql_config
+
+. ./mysql_config
+
+echo "This script takes $fname.sql and overrides your local MySQL database. But first it takes your current DB and saves it to stashed_$fname.sql."
+. ./confirm_continue
+
+# prevent the stashed_file from being committed
+# just in case the user hasn't already done this
+git update-index --assume-unchanged "stashed_$fname.sql"
+
+# dump and save to the stashed_ file
+echo "Stashing the current db to: stashed_$fname.sql"
+$path_to_binary"mysqldump" --host=$mysql_host --user=$mysql_user --password=$mysql_pass --skip-extended-insert $dbname > $rootdir/$path_to_file"stashed_"$fname.sql
+
+# import the working file
+echo "Done stashing. Starting to import $fname.sql to MySQL..."
+$path_to_binary"/mysql" --host=$mysql_host --user=$mysql_user --password=$mysql_pass $dbname  < $rootdir/$path_to_file/$fname.sql
+
+
+echo "Restored database from $fname.sql to MySql"
