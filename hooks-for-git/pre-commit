@@ -1,0 +1,11 @@
+#!/bin/sh
+# 
+# Dumps the database and adds it the current commit
+# You may need to chmod +x .git/hooks/mysql_config
+
+. .git/hooks/mysql_config
+
+$path_to_binary"/mysqldump" --user=$mysql_user --password=$mysql_pass --skip-extended-insert $dbname > $rootdir/$path_to_file/$dbname.sql
+git add $rootdir/$path_to_file/$dbname.sql
+
+echo "Dumped and added $dbname.sql to commit"

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+path_to_binary='/Applications/MAMP/Library/bin/'
+mysql_user='[user]'
+mysql_pass='[pass]'
+dbname='[dbname]' # also used as the file name
+path_to_file='[path/to/db/]' # the path relative to the root git directory
+
+rootdir=$(git rev-parse --show-toplevel)
