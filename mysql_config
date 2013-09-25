@@ -10,3 +10,5 @@ path_to_file='' # the path relative to the root git directory
 rootdir=$(git rev-parse --show-toplevel)
 
 set -e
+
+## Note: Whatever Stagign Or Production Server you plan to put these files on, you will need to change these credentials in order to use this script.
