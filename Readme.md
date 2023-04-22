@@ -7,7 +7,7 @@ This repo keeps track of [dbname] database.
 So what's different about this repo and the old hooks?
 
 - **Importing and exporting the db are separate steps from committing and pulling**. As a result, pulling and pushing doesn't automatically modify your database. Life is safer.
-- Whenever you run the import script, **your previous database is automatically saved to the "stashed_avi_ux.sql"** file. Life is safer.
+- Whenever you run the import script, **your previous database is automatically saved to the "stashed_[project_id]_ux.sql"** file. Life is safer.
 
 - The **database changes are tracked in a completely separate repo**, now updating the files doesn't require also force you to update the DB and put everybody else's db out of date. Life is safer.
 - The **override feature** should be used with caution! it primarily exists for easy updating and syncing with our content database.
@@ -69,7 +69,7 @@ In mysql_config write:
 path_to_binary='/Applications/MAMP/Library/bin/'
 mysql_user='root'
 mysql_pass='root'
-dbname='avi_ux' # also used as the file name
+dbname='[project_id]_ux' # also used as the file name
 path_to_file='' # the path relative to the root git directory
 
 rootdir=$(git rev-parse --show-toplevel)
@@ -117,7 +117,7 @@ echo "Restored database from $dbname.sql to MySql"
 
 == The original article ==
 
-C:\wamp\www\avi-spl-scratches\.git\hooks:
+C:\wamp\www\[project_id]-scratches\.git\hooks:
 - pre-commit
 - post-merge (post-commit on windows) (NO NO NO USE post-merge, see http://www.manpagez.com/man/5/githooks/)
 
